@@ -16,12 +16,15 @@ var input1 = document.getElementById('input1')
 
     input1.addEventListener('change', function apply() {
         console.clear()
+        let count = 0;
         readXlsxFile(input1.files[0]).then(function(rows) {
             rows.forEach(element => {
                 if (element[11] == "kvinne") {
                     console.log(element[2] + " " + element[3]);
+                    count++;
                 }
             });
+            console.log(`Det er ${count} kvinner på listen`);
         })
       })
 
@@ -29,12 +32,15 @@ var input2 = document.getElementById('input2')
 
     input2.addEventListener('change', function apply() {
         console.clear()
+        let count1 = 0;
         readXlsxFile(input2.files[0]).then(function(rows) {
             rows.forEach(element => {
                 if (element[11] == "kvinne" && element[10] == "1MKB") {
                     console.log(element[2] + " " + element[3]);
+                    count1++;
                 }
             });
+            console.log(`Det er ${count1} kvinner på listen på 1MKB`);
         })
       })
 
@@ -154,7 +160,9 @@ var input8 = document.getElementById('input8')
                     longest.push(element)
                 }
             });
-            console.log(longest);
+            longest.forEach(element => {
+                console.log(element);
+            })
         })
       })
 
@@ -166,12 +174,13 @@ var input9 = document.getElementById('input9')
             rows.forEach(element => {
                 if (typeof element[12] === "number") {
                     if (element[12] >= 6) {
-                        frav.push(element[2] + " " + element[3] + ` som har ${Math.round(element[12])} fravær`)
+                        frav.push(element[2] + " " + element[3] + ` som har ${Math.round(element[12])}% fravær`)
                     } 
                 }
             })
-            frav.reverse()
-            console.log(frav.join());
+            frav.forEach(element => {
+                console.log(element);
+            })
         })
       })
 
@@ -241,7 +250,6 @@ let bilderFemten = document.getElementById("bilderFemten")
       })
 
 var input12 = document.getElementById('input12')
-let testP = document.getElementById("demo")
 let inputBox = document.getElementById("inputBox")
 
     input12.addEventListener('change', function apply() {
@@ -254,13 +262,9 @@ let inputBox = document.getElementById("inputBox")
                 if (typeof element[2] === "string" && element[2] === navnet) {
                     if (element[2] === navnet) {
                         fornavn.push(element)
-                        console.log(fornavn);
-
-
                     }
                 }
             });
-            console.log(fornavn);
             let names = [];
             fornavn.forEach(element => {
                 names.push(element[2] + " " + element[3])
@@ -268,6 +272,5 @@ let inputBox = document.getElementById("inputBox")
                 inputImg.src = element[7]
                 inputBox.appendChild(inputImg)
             })
-            testP.textContent = names.join();
         })
       })
