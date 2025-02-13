@@ -5,6 +5,7 @@ var input = document.getElementById('input')
         readXlsxFile(input.files[0]).then(function(rows) {
             rows.forEach(element => {
                 if (element[2] !== "forNavn" && element[3] !== "etterNavn") {
+                    document.write(element[2] + " " + element[3] + ", ")
                     console.log(element[2] + " " + element[3]);
                 }
             });
